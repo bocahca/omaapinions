@@ -1,0 +1,33 @@
+/* Ensure the page takes up full height */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Flex container for the body */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Content area (this will grow to take available space) */
+body > layout\\:fragment {
+    flex: 1;
+}
+
+/* Sticky footer styling */
+footer {
+    margin-top: auto;
+    background: linear-gradient(to right, #232526, #414345);
+}
+.navbar {
+    background: linear-gradient(to right, #232526, #414345); /* Dark gradient from deep gray to charcoal */
+    border-bottom: 2px solid #333; /* Slightly lighter border for separation */
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important; /* White text for contrast */
+}
+.navbar .nav-link:hover {
+    color: #ff9900 !important; /* Gold color on hover */
+}
