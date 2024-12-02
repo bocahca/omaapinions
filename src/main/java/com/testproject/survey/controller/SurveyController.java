@@ -21,14 +21,8 @@ import com.testproject.survey.service.SurveyService;
 
 import jakarta.validation.Valid;
 
-
-
-
-
-
-
-
-
+// controller buat kelas survey
+// routing ditaro di atas method controllernya, biasanya pake @Getmapping atau @PostMapping
 
 @Controller
 public class SurveyController {

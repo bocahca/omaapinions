@@ -11,6 +11,8 @@ import com.testproject.survey.repository.SurveyQuestionRepository;
 import com.testproject.survey.repository.SurveyRepository;
 import com.testproject.survey.service.SurveyQuestionService;
 
+//service implementation - implementasi dari interface service yang dibuat
+
 @Service
 public class SurveyQuestionServiceImpl implements SurveyQuestionService{
     private SurveyQuestionRepository sqRepository;
@@ -39,6 +41,11 @@ public class SurveyQuestionServiceImpl implements SurveyQuestionService{
     public void updateSurveyQuestion(SurveyQuestionDto question) {
         SurveyQuestion sq = mapToSurveyQuestion(question);
         sqRepository.save(sq);    
+    }
+
+    @Override
+    public void deleteQuestion(long questionId) {
+        sqRepository.deleteById(questionId);
     }
 
 }

@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// DTO - biar service ga lgsg ngakses database, i think
+
 @Data
 @Builder
 @NoArgsConstructor

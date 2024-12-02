@@ -15,6 +15,9 @@ import com.testproject.survey.service.SurveyQuestionService;
 import jakarta.validation.Valid;
 
 
+//controller buat class SurveyQuestion / kelas Question
+// routing ditaro di atas method controllernya, biasanya pake @Getmapping atau @PostMapping
+
 @Controller
 public class SurveyQuestionController {
     private SurveyQuestionService sqService;
@@ -57,6 +60,14 @@ public class SurveyQuestionController {
         question.setSurvey(sqDto.getSurvey());
         sqService.updateSurveyQuestion(question);
         return("redirect:/surveys/" + sqDto.getSurvey().getId());
-    }  
+    }
+    
+    @GetMapping("/questions/delete/{questionId}")
+    public String deleteQuestion(@PathVariable("questionId")long questionId) {
+        long surveyId = sqService.findSurveyQuestionById(questionId).getSurvey().getId();
+        sqService.deleteQuestion(questionId);
+        return "redirect:/surveys/" + surveyId;  
+    } 
+    
     
 }

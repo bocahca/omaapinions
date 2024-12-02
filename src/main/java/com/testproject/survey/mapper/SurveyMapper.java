@@ -6,6 +6,8 @@ import com.testproject.survey.dto.SurveyDto;
 import static com.testproject.survey.mapper.SurveyQuestionMapper.mapToSurveyQuestionDto;
 import com.testproject.survey.models.Survey;
 
+// Mapper - isinya method buat transform dari DTO ke Model asli dan sebaliknya
+
 public class SurveyMapper {
 
     public static SurveyDto mapToSurveyDto(Survey survey) {

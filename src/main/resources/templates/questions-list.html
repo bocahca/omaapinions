@@ -25,15 +25,15 @@
             
             <!-- Action Buttons -->
             <div class="d-flex justify-content-end mb-4">
-                <a th:href="@{/surveys/delete/{surveyId}(surveyId=${survey.id})}" class="btn btn-danger btn-sm me-2">Delete Survey</a>
                 <a th:href="@{/questions/new/{surveyId}(surveyId=${survey.id})}" class="btn btn-success btn-sm">Add Question</a>
             </div>
             
             <!-- Survey Form -->
             <form action="submit_survey.php" method="post">
                 <div th:each="q: ${survey.questions}" class="mb-4">
-                    <label for="questions" class="form-label" th:text="${q.question}">Describe Yourself</label>
-                    <a th:href="@{/questions/edit/{questionId}(questionId=${q.id})}" class="btn btn-warning btn-sm mb-1 mx-2">edit</a>
+                    <label for="questions" class="form-label" th:text="${q.question}"></label>
+                    <a th:href="@{/questions/edit/{questionId}(questionId=${q.id})}" class="btn btn-warning btn-sm mb-1 mx-2">Edit</a>
+                    <a th:href="@{/questions/delete/{questionId}(questionId=${q.id})}" class="btn btn-danger btn-sm mb-1 mx-2">Delete</a>
                     <textarea id="questions" name="questions" class="form-control" rows="3" required></textarea>
                 </div>
                 <!-- Date -->

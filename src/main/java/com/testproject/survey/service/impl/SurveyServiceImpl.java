@@ -12,6 +12,8 @@ import com.testproject.survey.models.Survey;
 import com.testproject.survey.repository.SurveyRepository;
 import com.testproject.survey.service.SurveyService;
 
+//service implementation - implementasi dari interface service yang dibuat
+
 @Service
 public class SurveyServiceImpl implements SurveyService {
     private SurveyRepository surveyRepository;

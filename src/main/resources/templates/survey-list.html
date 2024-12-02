@@ -37,8 +37,12 @@
                                 Take Survey
                             </a>
                             <a th:href="@{/surveys/edit/{surveyId}(surveyId=${survey.id})}" 
-                               class="btn btn-warning btn-sm px-4 fw-medium py-2">
-                                Edit Survey
+                               class="btn btn-warning btn-sm px-4 fw-medium py-2 me-2">
+                                Edit
+                            </a>
+                            <a th:href="@{/surveys/delete/{surveyId}(surveyId=${survey.id})}" 
+                               class="btn btn-danger btn-sm px-4 fw-medium py-2">
+                                Delete
                             </a>
                         </div>
                     </div>

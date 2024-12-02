@@ -6,6 +6,8 @@ import com.testproject.survey.dto.SurveyDto;
 import com.testproject.survey.models.Survey;
 
 
+// interface service - isinya abstract method buat method-method apa aja yang bisa digunain class nya
+
 public interface SurveyService {
     List<SurveyDto> findAllSurveys();
     public Survey saveSurvey(SurveyDto surveyDto);
