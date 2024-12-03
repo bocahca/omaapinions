@@ -31,7 +31,7 @@ public class Survey {
     private String title;
     private String category;
     private Integer duration;
-    //private List<Submission> submissions; // sama
+    //private List<Submission> submissions; // blom tau implementasiin submission kek gmn
 
     @OneToMany(mappedBy = "survey", cascade= CascadeType.REMOVE)
     @Builder.Default // anotasi ini disuruh sama java nya
