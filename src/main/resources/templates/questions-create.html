@@ -35,9 +35,7 @@
                         <div class="form-group col-md-6">
                             <label for="question">Question</label>
                             <input type="text" class="form-control" id="question" name="question" 
-                                   th:field="*{question}" placeholder="Insert a question">
-                            <p th:if="${#fields.hasErrors('question')}" class="text-danger" 
-                               th:errors="*{question}"></p>
+                                   th:field="*{question}" placeholder="Insert a question" required>
                         </div>
                         <button type="submit" class="btn btn-success mt-3">Create</button>
                     </div>

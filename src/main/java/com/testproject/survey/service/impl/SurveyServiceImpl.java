@@ -16,6 +16,7 @@ import com.testproject.survey.service.SurveyService;
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
+    @SuppressWarnings("FieldMayBeFinal") // biar gaada muncul warning doang, gapake gpp
     private SurveyRepository surveyRepository;
 
     public SurveyServiceImpl(SurveyRepository surveyRepository) {

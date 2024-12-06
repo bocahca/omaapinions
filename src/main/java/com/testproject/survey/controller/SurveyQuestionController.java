@@ -2,7 +2,6 @@ package com.testproject.survey.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +11,13 @@ import com.testproject.survey.dto.SurveyQuestionDto;
 import com.testproject.survey.models.SurveyQuestion;
 import com.testproject.survey.service.SurveyQuestionService;
 
-import jakarta.validation.Valid;
-
 
 //controller buat class SurveyQuestion / kelas Question
 // routing ditaro di atas method controllernya, biasanya pake @Getmapping atau @PostMapping
 
 @Controller
 public class SurveyQuestionController {
+    @SuppressWarnings("FieldMayBeFinal")
     private SurveyQuestionService sqService;
 
     public SurveyQuestionController(SurveyQuestionService sqService) {
@@ -41,20 +39,12 @@ public class SurveyQuestionController {
         return "questions-edit";
     }
     @PostMapping("/questions/{surveyId}")
-    public String createQuestionForm(@PathVariable("surveyId") Long surveyId, @ModelAttribute("SurveyQuestion") SurveyQuestionDto sqDto,BindingResult result, Model model) {
-        if(result.hasErrors()) {
-            model.addAttribute("surveyQuestion", sqDto);
-            return "questions-create";
-        }
+    public String createQuestionForm(@PathVariable("surveyId") Long surveyId,@ModelAttribute("SurveyQuestion") SurveyQuestionDto sqDto, Model model) {
         sqService.createSurveyQuestion(surveyId, sqDto);
         return "redirect:/questions/new/" + surveyId;
     }
     @PostMapping("/questions/edit/{questionId}")
-    public String updateQuestion(@PathVariable("questionId") long questionId, @Valid @ModelAttribute("surveyQuestion") SurveyQuestionDto question, BindingResult result, Model model) {
-        if(result.hasErrors()) {
-            model.addAttribute("surveyQuestion", question);
-            return "questions-edit";
-        }
+    public String updateQuestion(@PathVariable("questionId") long questionId,  @ModelAttribute("surveyQuestion") SurveyQuestionDto question, Model model) {
         SurveyQuestionDto sqDto = sqService.findSurveyQuestionById(questionId);
         question.setId(questionId);
         question.setSurvey(sqDto.getSurvey());

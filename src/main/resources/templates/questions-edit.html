@@ -20,6 +20,11 @@
         <!-- Page Content -->
         <section layout:fragment="body" class="py-5">   
             <div class="container">
+                <div class="mt-4">
+                    <a th:href="@{/surveys/{surveyId}(surveyId=${surveyQuestion.survey.id})}" class="btn btn-secondary btn-sm">
+                        back
+                    </a>
+                </div>
                 <h1 class="mb-4">Edit pertanyaan</h1>
                 <form role="form" method="post" 
                       th:action="@{/questions/edit/{questionId}(questionId=${questionId})}" 
@@ -29,9 +34,7 @@
                         <div class="form-group col-md-6">
                             <label for="question">Question</label>
                             <input type="text" class="form-control" id="question" name="question" 
-                                   th:field="*{question}" placeholder="Insert a question">
-                            <p th:if="${#fields.hasErrors('question')}" class="text-danger" 
-                               th:errors="*{question}"></p>
+                                   th:field="*{question}" placeholder="Insert a question" required>
                         </div>
                         <button type="submit" class="btn btn-success mt-3">Edit</button>
                     </div>
