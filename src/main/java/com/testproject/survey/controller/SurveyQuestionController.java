@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.testproject.survey.dto.SurveyDto;
 import com.testproject.survey.dto.SurveyQuestionDto;
 import com.testproject.survey.models.SurveyQuestion;
 import com.testproject.survey.service.SurveyQuestionService;
+import com.testproject.survey.service.SurveyService;
 
 
 //controller buat class SurveyQuestion / kelas Question
@@ -19,15 +21,19 @@ import com.testproject.survey.service.SurveyQuestionService;
 public class SurveyQuestionController {
     @SuppressWarnings("FieldMayBeFinal")
     private SurveyQuestionService sqService;
-
-    public SurveyQuestionController(SurveyQuestionService sqService) {
+    @SuppressWarnings("FieldMayBeFinal")
+    private SurveyService surveyService;
+    public SurveyQuestionController(SurveyQuestionService sqService, SurveyService surveyService) {
         this.sqService = sqService;
+        this.surveyService = surveyService;
     }
+
 
     @GetMapping("/questions/new/{surveyId}")
     public String createQuestionForm(@PathVariable("surveyId") long surveyId, Model model) {
         SurveyQuestion sq = new SurveyQuestion();
-        model.addAttribute("surveyId", surveyId);
+        SurveyDto survey = surveyService.findSurveyById(surveyId);
+        model.addAttribute("survey", survey);
         model.addAttribute("surveyQuestion", sq);
         return "questions-create";
     }
@@ -49,14 +55,14 @@ public class SurveyQuestionController {
         question.setId(questionId);
         question.setSurvey(sqDto.getSurvey());
         sqService.updateSurveyQuestion(question);
-        return("redirect:/surveys/" + sqDto.getSurvey().getId());
+        return("redirect:/questions/new/" + sqDto.getSurvey().getId());
     }
     
     @GetMapping("/questions/delete/{questionId}")
     public String deleteQuestion(@PathVariable("questionId")long questionId) {
         long surveyId = sqService.findSurveyQuestionById(questionId).getSurvey().getId();
         sqService.deleteQuestion(questionId);
-        return "redirect:/surveys/" + surveyId;  
+        return "redirect:/questions/new/" + surveyId;  
     } 
     
     

@@ -10,6 +10,9 @@
   <body>
     <section layout:fragment="body" class="py-5">
       <div class="container mt-5">
+        <div th:if="${param.success}" class="alert alert-success">
+            Successfully registered!
+        </div>
         <div>
             <form th:action="@{/surveys/search}" class="form0-inline my-2 my-lg-0 mb-3">
                 <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="search surveys" aria-label="Search">
@@ -41,7 +44,8 @@
                                 Edit
                             </a>
                             <a th:href="@{/surveys/delete/{surveyId}(surveyId=${survey.id})}" 
-                               class="btn btn-danger btn-sm px-4 fw-medium py-2">
+                               class="btn btn-danger btn-sm px-4 fw-medium py-2"
+                               onclick="return confirm('delete this survey?')">
                                 Delete
                             </a>
                         </div>

@@ -32,7 +32,7 @@ public class SurveyController {
     public SurveyController(SurveyService surveyService) {
         this.surveyService = surveyService;
     }
-    @GetMapping("surveys")
+    @GetMapping("/surveys")
     public String listSurveys(Model model) {
         List<SurveyDto> surveys = surveyService.findAllSurveys();
         Map<String, List<SurveyDto>> surveysByCategory = surveys.stream()

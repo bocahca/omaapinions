@@ -22,7 +22,7 @@
         <section layout:fragment="body" class="py-5">   
             <div class="container">
                 <div class="mt-4">
-                    <a th:href="@{/surveys/{surveyId}(surveyId=${surveyId})}" class="btn btn-secondary btn-sm">
+                    <a th:href="@{/surveys/{surveyId}(surveyId=${survey.id})}" class="btn btn-secondary btn-sm">
                         back
                     </a>
                 </div>
@@ -39,8 +39,30 @@
                         </div>
                         <button type="submit" class="btn btn-success mt-3">Create</button>
                     </div>
-                </form>   
-                
+                </form>
+                <table class="table table-hover table-bordered mt-4">
+                    <thead>
+                      <tr>
+                        <!--<th scope="col">#</th>-->
+                        <th scope="col">questions</th>
+                        <th scope="col">action</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                    <div th:each="q : ${survey.questions}">
+                        <tr>
+                            <!-- <th scope="row" th:text="${question.id}">1</th> -->
+                            <td th:text="${q.question}" class="col-10">Mark</td>
+                            <td class="col-2">
+                                <a th:href="@{/questions/edit/{questionId}(questionId=${q.id})}" class="btn btn-warning btn-sm mb-1 mx-2">Edit</a>
+                                <a th:href="@{/questions/delete/{questionId}(questionId=${q.id})}" class="btn btn-danger btn-sm mb-1 mx-2"
+                                onclick="return confirm('delete this question?')"
+                                >Delete</a> 
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                  </table>       
             </div>
         </section>
     </main>

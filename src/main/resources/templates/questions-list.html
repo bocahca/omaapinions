@@ -16,7 +16,12 @@
 <body>
     <section layout:fragment="body" class="py-5">
         <div class="container mt-5">
-            <!-- Survey Header -->
+            <!-- Survey Header -->  
+            <div class="mt-4">
+                <a th:href="@{/surveys}" class="btn btn-secondary">
+                    back
+                </a>
+            </div>
             <div class="text-center mb-4">
                 <h1 class="mb-2" th:text="${survey.title}"></h1>
                 <p class="text-muted mb-1" th:text="'Category: ' + ${survey.category}"></p>
@@ -32,8 +37,6 @@
             <form action="submit_survey.php" method="post">
                 <div th:each="q: ${survey.questions}" class="mb-4">
                     <label for="questions" class="form-label" th:text="${q.question}"></label>
-                    <a th:href="@{/questions/edit/{questionId}(questionId=${q.id})}" class="btn btn-warning btn-sm mb-1 mx-2">Edit</a>
-                    <a th:href="@{/questions/delete/{questionId}(questionId=${q.id})}" class="btn btn-danger btn-sm mb-1 mx-2">Delete</a>
                     <textarea id="questions" name="questions" class="form-control" rows="3" required></textarea>
                 </div>
                 <!-- Date -->
