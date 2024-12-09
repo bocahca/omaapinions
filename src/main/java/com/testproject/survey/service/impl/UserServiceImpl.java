@@ -3,6 +3,7 @@ package com.testproject.survey.service.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.testproject.survey.dto.RegistrationDto;
@@ -17,9 +18,11 @@ public class UserServiceImpl implements UserService {
 
     @SuppressWarnings("FieldMayBeFinal") // biar gaada muncul warning doang, gapake gpp
     private UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
+    @SuppressWarnings("FieldMayBeFinal")
+    private PasswordEncoder passwordEncoder;
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -28,7 +31,7 @@ public class UserServiceImpl implements UserService {
         UserSurvey user = new UserSurvey();
         user.setUsername(registrationDto.getUsername());
         user.setEmail(registrationDto.getEmail());
-        user.setPassword(registrationDto.getPassword());
+        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         Set<RoleEnum> roles = new HashSet<>();
         //default user role adalah USER
         roles.add(RoleEnum.USER);
