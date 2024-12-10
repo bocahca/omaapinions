@@ -28,23 +28,23 @@
             <!-- Navbar Links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" th:href="@{/}">Home</a>
+                    <a class="nav-link fw-semibold" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-semibold" th:href="@{/surveys}">Survey List</a>
-                </li>
-                <li class="nav-item">
+                </li>             
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">
                     <a class="nav-link fw-semibold" th:href="@{/surveys/new}">New Survey</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link fw-semibold"  th:href="@{/login}">login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"> -->
                     <a class="nav-link fw-semibold"  th:href="@{/logout}">logout</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link fw-semibold"  th:href="@{/register}">register</a>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle fw-semibold" 
                        href="#" 

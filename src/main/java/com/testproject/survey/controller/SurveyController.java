@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.testproject.survey.dto.SurveyDto;
 import com.testproject.survey.models.Survey;
+import com.testproject.survey.models.UserSurvey;
+import com.testproject.survey.security.SecurityUtil;
 import com.testproject.survey.service.SurveyService;
+import com.testproject.survey.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -28,12 +31,16 @@ import jakarta.validation.Valid;
 public class SurveyController {
     @SuppressWarnings("FieldMayBeFinal")
     private SurveyService surveyService;
+    private UserService userService;
 
-    public SurveyController(SurveyService surveyService) {
+    public SurveyController(SurveyService surveyService, UserService userService) {
         this.surveyService = surveyService;
+        this.userService = userService;
     }
     @GetMapping("/surveys")
     public String listSurveys(Model model) {
+        UserSurvey user = new UserSurvey();
+
         List<SurveyDto> surveys = surveyService.findAllSurveys();
         Map<String, List<SurveyDto>> surveysByCategory = surveys.stream()
             .collect(Collectors.groupingBy(SurveyDto::getCategory));
@@ -41,6 +48,12 @@ public class SurveyController {
         List<String> categories = new ArrayList<>(surveysByCategory.keySet());
         Collections.sort(categories);
         
+        String username = SecurityUtil.getSessionUser();
+        if(username !=null) {
+            user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("user", user);
         model.addAttribute("categories", categories);
         model.addAttribute("surveysByCategory", surveysByCategory);
         return "survey-list";

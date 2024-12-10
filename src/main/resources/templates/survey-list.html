@@ -39,19 +39,21 @@
                                class="btn btn-success btn-sm px-4 fw-medium py-2 me-2">
                                 Take Survey
                             </a>
-                            <a th:href="@{/questions/new/{surveyId}(surveyId=${survey.id})}" 
-                                class="btn btn-primary btn-sm px-4 fw-medium py-2 me-2">
-                                Modify Questions
-                            </a>
-                            <a th:href="@{/surveys/edit/{surveyId}(surveyId=${survey.id})}" 
-                               class="btn btn-warning btn-sm px-4 fw-medium py-2 me-2">
-                                Edit
-                            </a>
-                            <a th:href="@{/surveys/delete/{surveyId}(surveyId=${survey.id})}" 
-                               class="btn btn-danger btn-sm px-4 fw-medium py-2"
-                               onclick="return confirm('delete this survey?')">
-                                Delete
-                            </a>
+                            <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                                <a th:href="@{/questions/new/{surveyId}(surveyId=${survey.id})}" 
+                                    class="btn btn-primary btn-sm px-4 fw-medium py-2 me-2">
+                                    Modify Questions
+                                </a>               
+                                <a th:href="@{/surveys/edit/{surveyId}(surveyId=${survey.id})}" 
+                                class="btn btn-warning btn-sm px-4 fw-medium py-2 me-2">
+                                    Edit
+                                </a>
+                                <a th:href="@{/surveys/delete/{surveyId}(surveyId=${survey.id})}" 
+                                class="btn btn-danger btn-sm px-4 fw-medium py-2"
+                                onclick="return confirm('delete this survey?')">
+                                    Delete
+                                </a>          
+                            </div>                 
                         </div>
                     </div>
                 </li>
