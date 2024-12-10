@@ -39,6 +39,10 @@
                                class="btn btn-success btn-sm px-4 fw-medium py-2 me-2">
                                 Take Survey
                             </a>
+                            <a th:href="@{/questions/new/{surveyId}(surveyId=${survey.id})}" 
+                                class="btn btn-primary btn-sm px-4 fw-medium py-2 me-2">
+                                Modify Questions
+                            </a>
                             <a th:href="@{/surveys/edit/{surveyId}(surveyId=${survey.id})}" 
                                class="btn btn-warning btn-sm px-4 fw-medium py-2 me-2">
                                 Edit
