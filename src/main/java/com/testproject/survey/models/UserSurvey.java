@@ -34,7 +34,7 @@ public class UserSurvey {
     @ElementCollection(fetch = FetchType.EAGER) // nambahin ini jadi ada tabel users_roles di database, dipake buat nyimpen collection of roles
     private Set<RoleEnum> roles = new HashSet<>(); // HashSet digunakan untuk mencegah duplikasi
 
-    // Enum kyk list konstant
+    // Enum untuk roles
     public enum RoleEnum {
         ADMIN,
         USER

@@ -36,6 +36,13 @@ public class UserServiceImpl implements UserService {
         //default user role adalah USER
         roles.add(RoleEnum.USER);
         user.setRoles(roles);
+
+        //tambahin kalo emailnya berakhiran @admin.com jadi ada role admin
+        if (registrationDto.getEmail().endsWith("@admin.com")) {
+            roles.add(RoleEnum.ADMIN);
+        }
+
+        user.setRoles(roles);
         
         userRepository.save(user);
     }
