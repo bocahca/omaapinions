@@ -36,7 +36,7 @@ public class Submission {
     @JoinColumn(name = "question_id", nullable = false)
     private SurveyQuestion question;
 
-    @Column(nullable = false)
+    @Column
     private String answer;
 
 }
