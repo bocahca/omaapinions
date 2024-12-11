@@ -31,6 +31,7 @@ import jakarta.validation.Valid;
 public class SurveyController {
     @SuppressWarnings("FieldMayBeFinal")
     private SurveyService surveyService;
+    @SuppressWarnings("FieldMayBeFinal")
     private UserService userService;
 
     public SurveyController(SurveyService surveyService, UserService userService) {

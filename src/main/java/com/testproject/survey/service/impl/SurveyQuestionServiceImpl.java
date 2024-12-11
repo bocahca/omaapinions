@@ -15,11 +15,12 @@ import com.testproject.survey.service.SurveyQuestionService;
 
 @Service
 public class SurveyQuestionServiceImpl implements SurveyQuestionService{
-    @SuppressWarnings("FieldMayBeFinal") // biar gaada muncul warning doang, gapake gpp
+    @SuppressWarnings("FieldMayBeFinal")
     private SurveyQuestionRepository sqRepository;
-    @SuppressWarnings("FieldMayBeFinal") // biar gaada muncul warning doang, gapake gpp
+    @SuppressWarnings("FieldMayBeFinal")
     private SurveyRepository surveyRepository;
 
+    
     public SurveyQuestionServiceImpl(SurveyQuestionRepository sqRepository, SurveyRepository surveyRepository) {
         this.sqRepository = sqRepository;
         this.surveyRepository = surveyRepository;

@@ -29,7 +29,7 @@
             </div>
                   
               <!-- Survey Form -->
-            <form action="#" method="post">
+            <form th:action="@{/submitSurvey}" method="post">
                 <input type="hidden" th:name="survey_id" th:value="${survey.id}">
                 <div th:each="q, stat : ${survey.questions}" class="mb-4">
                     <label for="'question-' + ${q.id}"  class="form-label">
