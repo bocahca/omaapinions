@@ -50,29 +50,21 @@ public class SubmissionController {
         String key = entry.getKey();
         String value = entry.getValue();
 
-        // Check if the key matches the expected format
         if (key.startsWith("answers[") && key.endsWith("]")) {
             String questionIdStr = key.substring(8, key.length() - 1); // ngambil id 
-            try {
-                Long questionId = Long.valueOf(questionIdStr);
-                
-                // Create Submission object
-                Submission submission = new Submission();
-                submission.setUser (user);
-                submission.setSurvey(survey);
-                SurveyQuestion question = new SurveyQuestion();
-                question.setId(questionId);
-                submission.setQuestion(question);
-                submission.setAnswer(value);
-
-                // Save submission
-                submissionService.save(submission);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid question ID format: " + questionIdStr);
-            }
-        } else {
-            System.err.println("Unexpected key format: " + key);
-        }
+            Long questionId = Long.valueOf(questionIdStr);
+            
+            // Create Submission object
+            Submission submission = new Submission();
+            submission.setUser (user);
+            submission.setSurvey(survey);
+            SurveyQuestion question = new SurveyQuestion();
+            question.setId(questionId);
+            submission.setQuestion(question);
+            submission.setAnswer(value);
+            // Save submission
+            submissionService.save(submission); 
+        } 
     }
 
     return "redirect:/surveys"; // Redirect after submission

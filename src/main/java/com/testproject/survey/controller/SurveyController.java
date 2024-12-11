@@ -19,6 +19,7 @@ import com.testproject.survey.dto.SurveyDto;
 import com.testproject.survey.models.Survey;
 import com.testproject.survey.models.UserSurvey;
 import com.testproject.survey.security.SecurityUtil;
+import com.testproject.survey.service.SubmissionService;
 import com.testproject.survey.service.SurveyService;
 import com.testproject.survey.service.UserService;
 
@@ -34,9 +35,13 @@ public class SurveyController {
     @SuppressWarnings("FieldMayBeFinal")
     private UserService userService;
 
-    public SurveyController(SurveyService surveyService, UserService userService) {
+    @SuppressWarnings("FieldMayBeFinal")
+    private SubmissionService submissionService;
+
+    public SurveyController(SurveyService surveyService, UserService userService, SubmissionService submissionService) {
         this.surveyService = surveyService;
         this.userService = userService;
+        this.submissionService = submissionService;
     }
     @GetMapping("/surveys")
     public String listSurveys(Model model) {
@@ -90,10 +95,18 @@ public class SurveyController {
     }
     @GetMapping("/surveys/{surveyId}") 
     public String showSurveyQuestions(@PathVariable("surveyId") long surveyId, Model model) {
+        
+        String username = SecurityUtil.getSessionUser();
+
+        if (submissionService.surveyTaken(surveyId, username)) {
+            return "redirect:/surveys?surveyTaken";
+        }
+
         SurveyDto surveyDto = surveyService.findSurveyById(surveyId);
         model.addAttribute("survey", surveyDto);
         return "questions-list";    
     }
+    
     @GetMapping("surveys/edit/{surveyId}")
     public String editSurveys(@PathVariable("surveyId") long surveyId, Model model) {
         SurveyDto survey = surveyService.findSurveyById(surveyId);

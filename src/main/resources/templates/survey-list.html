@@ -13,6 +13,9 @@
         <div th:if="${param.success}" class="alert alert-success">
             Successfully registered!
         </div>
+        <div th:if="${param.surveyTaken}" class="alert alert-danger">
+            Survey Has been Taken
+        </div>
         <h1 class="mb-4">SURVEYS LIST</h1>
         <div>
             <form th:action="@{/surveys/search}" class="form0-inline my-2 my-lg-0 mb-3">
