@@ -32,8 +32,11 @@ xmlns:sec="http://www.thymeleaf.org">
                 <li class="nav-item">
                     <a class="nav-link fw-semibold" th:href="@{/}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link fw-semibold" th:href="@{/surveys}">Survey List</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item"> 
+                    <a class="nav-link fw-semibold"  th:href="@{/logout}">logout</a>
                 </li>             
                 <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">
                     <a class="nav-link fw-semibold" th:href="@{/surveys/new}">New Survey</a>
@@ -45,9 +48,7 @@ xmlns:sec="http://www.thymeleaf.org">
                 <li  sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link fw-semibold"  th:href="@{/register}">register</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item"> 
-                    <a class="nav-link fw-semibold"  th:href="@{/logout}">logout</a>
-                </li>
+                
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle fw-semibold" 
                        href="#" 
