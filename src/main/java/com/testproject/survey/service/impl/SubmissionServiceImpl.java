@@ -29,7 +29,7 @@ public class SubmissionServiceImpl implements SubmissionService  {
     @Override
     public boolean surveyTaken(Long surveyId, String username) {
         
-        UserSurvey user = userRepository.findByEmail(username);
+        UserSurvey user = userRepository.findByEmail(username); //pake find by email lagi
         return submissionRepository.existsBySurveyIdAndUser(surveyId, user);
     }
 }

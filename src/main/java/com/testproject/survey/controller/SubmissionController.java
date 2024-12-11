@@ -67,6 +67,6 @@ public class SubmissionController {
         } 
     }
 
-    return "redirect:/surveys"; // Redirect after submission
+    return "redirect:/surveys?submit"; // Redirect after submission
     }
 }

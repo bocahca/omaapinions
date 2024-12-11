@@ -43,6 +43,11 @@ public class SurveyController {
         this.userService = userService;
         this.submissionService = submissionService;
     }
+    @GetMapping("")
+    public String getOverview() {
+        return "overview";
+    }
+    
     @GetMapping("/surveys")
     public String listSurveys(Model model) {
         UserSurvey user = new UserSurvey();
@@ -106,7 +111,7 @@ public class SurveyController {
         model.addAttribute("survey", surveyDto);
         return "questions-list";    
     }
-    
+
     @GetMapping("surveys/edit/{surveyId}")
     public String editSurveys(@PathVariable("surveyId") long surveyId, Model model) {
         SurveyDto survey = surveyService.findSurveyById(surveyId);
